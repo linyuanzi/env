@@ -25,8 +25,8 @@ func upper(v string) string {
 	return strings.ToUpper(v)
 }
 
-func SetPrefix() {
-	env.prefix = ""
+func SetPrefix(prefix string) {
+	env.prefix = prefix
 }
 
 func Fill(v interface{}) error {
