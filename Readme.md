@@ -1,5 +1,8 @@
 # env
 This lib is used for dealing with environment variables in Golang .
+from: https://github.com/timest/env
+
+## little change
 
 ```
 CONFIG_APP=ENVAPP
@@ -47,6 +50,7 @@ type config struct {
 
 func main() {
 	cfg := new(config)
+	env.SetPrefix("CONFIG")
 	err := env.Fill(cfg)
 	if err != nil {
 		panic(err)
@@ -99,7 +103,6 @@ MYSQL_PORT=3306
 ```
 func main() {
     cfg := new(config)
-    env.IgnorePrefix()
     err := env.Fill(cfg)
     ...
 }

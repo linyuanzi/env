@@ -14,19 +14,19 @@ var (
 )
 var env *Env
 type Env struct {
-	ignorePrefix bool
+	prefix string
 }
 
 func init() {
-	env = &Env{false}
+	env = &Env{}
 }
 
 func upper(v string) string {
 	return strings.ToUpper(v)
 }
 
-func IgnorePrefix() {
-	env.ignorePrefix = true
+func SetPrefix() {
+	env.prefix = ""
 }
 
 func Fill(v interface{}) error {
@@ -39,10 +39,7 @@ func (e *Env)Fill(v interface{}) error {
 		return fmt.Errorf("only the pointer to a struct is supported")
 	}
 
-	prefix := upper(ind.Type().Name())
-	if e.ignorePrefix {
-		prefix = ""
-	}
+	prefix := e.prefix
 	err := fill(prefix, ind)
 	if err != nil {
 		return err
